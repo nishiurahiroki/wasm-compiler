@@ -18,4 +18,4 @@ WORKDIR /root/work
 RUN ./emsdk install --build=Release sdk-incoming-64bit binaryen-master-64bit
 RUN ./emsdk activate --global --build=Release sdk-incoming-64bit binaryen-master-64bit
 
-RUN source ./emsdk_env.sh
+# CMD ["source" "./emsdk_env.sh"]
