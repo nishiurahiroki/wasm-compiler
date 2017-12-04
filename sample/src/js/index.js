@@ -1,8 +1,6 @@
-console.log('start!');
-
-async function hoge() {
-  const result = await fetch('./wasm/sample.wasm')
-  const bytes = await result.arrayBuffer()
+async function main() {
+  const wasm = await fetch('./wasm/sample.wasm')
+  const bytes = await wasm.arrayBuffer()
   const module = await WebAssembly.compile(bytes)
 
   const instance = new WebAssembly.Instance(module, {
@@ -21,13 +19,8 @@ async function hoge() {
     }
   })
 
-  console.log(instance.exports._add(10, 100))
+  console.log(instance.exports._calc(10, 100))
 }
 
-hoge()
 
-// fetch('./wasm/sample.wasm')
-//   .then(response => response.arrayBuffer())
-//   .then(bytes => WebAssembly.compile(bytes))
-//   .then(module => WebAssembly.instantiate(module))
-//   .then(instance => console.log(instance))
+main()
